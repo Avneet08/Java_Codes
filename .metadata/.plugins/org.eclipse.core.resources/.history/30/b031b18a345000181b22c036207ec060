@@ -1,0 +1,121 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class rp {
+	public static void main(String args[]) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			int T = sc.nextInt();
+			for (int j = 0; j < T; j++) {
+				int limit = sc.nextInt();
+				int k=sc.nextInt();
+				ArrayList<Integer> seq=new ArrayList<Integer>();
+				ArrayList<Integer> motu=new ArrayList<Integer>();
+				ArrayList<Integer> tomu=new ArrayList<Integer>();
+				for (int i = 0; i < limit; i++) {
+					int x=sc.nextInt();
+					seq.add(x) ;
+					if(i%2==0) {
+						motu.add(x);
+					}
+					else {
+						tomu.add(x);
+					}
+				}
+				int i;
+				long sumMotu = 0;
+				long sumTomu=0;
+				for(i = 0; i < motu.size(); i++)
+					sumMotu += motu.get(i);
+				for(i = 0; i < tomu.size(); i++)
+					sumTomu += tomu.get(i);
+				if(sumMotu <sumTomu){
+					System.out.println("YES");		
+				}
+				else{
+					performswaps(motu,tomu,seq,k);
+				}
+				
+			}
+		} catch (Exception e) {
+			return;
+		}
+	}
+	private static void check(long sumTomu, long sumMotu) {
+		if(sumMotu <sumTomu){
+			System.out.println("YES");		
+		}
+		else{
+			System.out.println("NO");
+		}
+		
+	}
+	private static void performswaps(ArrayList<Integer> motu,ArrayList<Integer>tomu,ArrayList<Integer> seq,int k){
+		int minly=Math.min(motu.size(), tomu.size());
+		//int minfi=Math.min(minly, k);
+		long sumMotu=0;
+		long sumTomu=0;
+		if(minly<k) {
+			Collections.sort(seq);
+			//System.out.println(minly);
+			for(int i=(seq.size()-1);i>=0;i--) {
+				if(i>minly) {
+					//System.out.println("Tomu"+seq.get(i));
+					sumTomu+=seq.get(i);
+				}
+				else {
+					//System.out.println("Motu"+seq.get(i));
+					sumMotu+=seq.get(i);
+				}
+			}
+			check(sumTomu,sumMotu);
+			
+		}
+		else {
+			//System.out.println("ddnn");
+			performswaps2(motu,tomu,k);
+		}
+	}
+	private static void performswaps2(ArrayList<Integer> motu,ArrayList<Integer> tomu,int k) {
+		Collections.sort(motu);
+		Collections.sort(tomu);
+		int temp =0;
+		int temp2 =0;
+		int tempk = 0;
+		int x=Math.min(tomu.size(),motu.size());
+		if(k>x){
+			tempk = k;
+			k = x;
+		}
+		for(int u =0;u<k;u++){
+			temp = tomu.get(u);
+			temp2 = motu.get(motu.size()-1-u);
+			tomu.add(u,temp2) ;
+			motu.add(motu.size()-1-u,temp) ;
+		}
+		if((tempk - k)%2 != 0){
+			Collections.sort(motu);
+			Collections.sort(tomu);
+			
+			temp = tomu.get(0);
+			temp2 = motu.get(motu.size()-1);
+			tomu.add(0,temp2);
+			motu.add(motu.size()-1,temp);
+		}
+		int sumTomu = 0;
+		int sumMotu =0;
+		for(int p =0;p<Math.max(motu.size(),tomu.size());p++){
+			if(p<motu.size() && p<tomu.size()) {
+			    sumTomu = sumTomu + tomu.get(p);
+			    sumMotu = sumMotu + motu.get(p);
+			  } else if(p<tomu.size()) {
+				sumTomu = sumTomu + tomu.get(p);
+			  } else {
+				sumMotu = sumMotu + motu.get(p);
+			  }
+		}
+		check(sumTomu,sumMotu);
+	}
+}

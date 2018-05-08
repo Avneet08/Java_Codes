@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class re {
+	 public static void main(String args[]) {
+
+	        //get input till which prime number to be printed
+	        System.out.println("Enter the number till which prime number to be printed: ");
+	        int limit = new Scanner(System.in).nextInt();
+	        int arr[] =new int[limit];
+	        for(int i=0;i<limit;i++) {
+	        	arr[i]= new Scanner(System.in).nextInt();
+	        }
+	        for(int number = 0; number<arr.length; number++){
+	            //print prime numbers only
+	            if(isPrime(arr[number])) {
+	                System.out.println(arr[number]);
+	            }else {
+	            	continue;
+	            }
+	        }
+
+	    }
+
+	    /*
+	     * Prime number is not divisible by any number other than 1 and itself
+	     * @return true if number is prime
+	     */
+	    public static boolean isPrime(int number){
+	        for(int i=2; i<number; i++){
+	            if(number%i == 0){
+	                return false; //number is divisible so its not prime
+	            }
+	        }
+	        return true; //number is prime now
+	    }
+}

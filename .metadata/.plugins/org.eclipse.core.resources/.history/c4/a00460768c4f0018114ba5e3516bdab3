@@ -1,0 +1,63 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class re {
+	 public static void main(String args[]) {
+
+	        //get input till which prime number to be printed
+	        System.out.println("Enter the number till which prime number to be printed: ");
+	        int limit = new Scanner(System.in).nextInt();
+	        int arr[] =new int[limit];
+	        System.out.println("enter the numbers");
+	        for(int i=0;i<limit;i++) {
+	        	arr[i]= new Scanner(System.in).nextInt();
+	        }
+	        Integer[] arr_2=dup(arr);
+	        for(int i=0;i<arr_2.length;i++) {
+	        	System.out.println(arr_2[i]);
+	        }
+	        int count=0;
+	        for(int number = 0; number<arr_2.length; number++){
+	            //print prime numbers only
+	        	if(arr_2[number]==0) {
+	        		count++;
+	        	}
+	            if(isPrime(arr_2[number])) {
+	                System.out.println(arr_2[number]);
+	            }else {
+	            	count++;
+	            	continue;
+	            }
+	        }
+	        System.out.println("count"+count);
+
+	    }
+	 public static Integer[] dup(int[] arr) {
+		 
+		 Arrays.sort(arr);
+		 ArrayList<Integer> arr2=new  ArrayList<Integer>();
+		 arr2.add(arr[0]);
+		 for(int i = 1; i < arr.length; i++) {
+		     if(arr[i] == arr[i - 1]) {
+		         System.out.println("Duplicate: " + arr[i]);
+		     }
+		     else {
+		    	 arr2.add(arr[i]);
+		     }
+		 }
+		 Integer[] arr_2 = new Integer[arr2.size()];
+		 arr_2 = arr2.toArray(arr_2);
+		 return arr_2;
+	 
+	 }
+
+	    public static boolean isPrime(int number){
+	        for(int i=2; i<number; i++){
+	            if(number%i == 0){
+	                return false; //number is divisible so its not prime
+	            }
+	        }
+	        return true; //number is prime now
+	    }
+}

@@ -1,0 +1,33 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class fuckoff {
+	static Scanner sc = new Scanner(System.in);
+	   static BigInteger X[][]=new BigInteger[2][2];
+		static void multiply(BigInteger[][] f, BigInteger[][] p) {
+			
+	        X[1][0] = f[1][0].multiply(p[0][0]).add(f[1][1].multiply(p[1][0]));
+			X[0][1] =f[0][0] .multiply(p[0][1]).add(f[0][1] .multiply(p[1][1]) );
+	        X[1][1] = f[1][0] .multiply(p[0][1]).add(f[1][1] .multiply(p[1][1]) );
+	        X[0][0] = f[0][0].multiply(p[0][0]).add(f[0][1].multiply(p[1][0]));
+
+			f[1][0]=X[1][0];f[0][0]=X[0][0];f[1][1]=X[1][1];f[0][1]=X[0][1];
+		}
+		static void power(BigInteger[][] f, long n) {
+			if (n == 0 || n == 1)
+				return;
+			  BigInteger x=BigInteger.valueOf(1);
+			  BigInteger y=BigInteger.valueOf(0);
+			 BigInteger M[][] = new BigInteger[][] { { x, x }, { x, y } };
+			power(f, n / 2);
+			multiply(f, f);
+
+			if (n % 2 != 0)
+				multiply(f, M);
+		}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

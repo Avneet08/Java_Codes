@@ -1,0 +1,119 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class rp {
+	public static void main(String args[]) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			int T = sc.nextInt();
+			for (int j = 0; j < T; j++) {
+				int limit = sc.nextInt();
+				int k=sc.nextInt();
+				ArrayList<Integer> seq=new ArrayList<Integer>();
+				ArrayList<Integer> motu=new ArrayList<Integer>();
+				ArrayList<Integer> tomu=new ArrayList<Integer>();
+				for (int i = 0; i < limit; i++) {
+					int x=sc.nextInt();
+					seq.add(x) ;
+					if(i%2==0) {
+						motu.add(x);
+					}
+					else {
+						tomu.add(x);
+					}
+				}
+				
+				int i;
+				long sumMotu = sumarray(motu);
+				long sumTomu=sumarray(tomu);
+				
+				if(sumMotu <sumTomu){
+					System.out.println("YES");		
+				}
+				else{
+					//System.out.println("d");
+					
+					performswaps(motu,tomu,seq,k);
+				}
+				
+			}
+		} catch (Exception e) {
+			return;
+		}
+	}
+	private static void check(long sumTomu, long sumMotu) {
+		if(sumMotu <sumTomu){
+			System.out.println("YES");		
+		}
+		else{
+			System.out.println("NO");
+		}
+		
+	}
+	private static void performswaps(ArrayList<Integer> motu,ArrayList<Integer>tomu,ArrayList<Integer> seq,int k){
+		int minly=Math.min(motu.size(), tomu.size());
+		//int minfi=Math.min(minly, k);
+		long sumMotu=0;
+		long sumTomu=0;
+		if(minly<k) {
+			Collections.sort(seq);
+			//System.out.println(minly);
+			for(int i=(seq.size()-1);i>=0;i--) {
+				if(i>minly) {
+					//System.out.println("Tomu"+seq.get(i));
+					sumTomu+=seq.get(i);
+				}
+				else {
+					//System.out.println("Motu"+seq.get(i));
+					sumMotu+=seq.get(i);
+				}
+			}
+			check(sumTomu,sumMotu);
+			
+		}
+		else {
+			Collections.sort(motu);
+			Collections.sort(tomu);
+			for(int i=0;i<k;i++) {
+				int temp=motu.get(motu.size()-1-i);
+				int temp2=tomu.get(i);
+				//System.out.println(motu.toString());
+				//System.out.println(tomu.toString());
+				System.out.println(temp+" "+temp2);
+				
+				if(temp>temp2) {
+					
+					Collections.swap(motu,motu.size()-1-i, temp2);
+					Collections.swap(tomu, i, temp);
+					//tomu.add(i, temp);
+					Collections.sort(motu);
+					Collections.sort(tomu);
+					System.out.println(motu.toString());
+					System.out.println(tomu.toString());
+					sumTomu=sumarray(tomu);
+					sumMotu=sumarray(motu);
+					
+					check(sumTomu,sumMotu);
+				}
+				else {
+					continue;
+				}
+			}
+			
+			
+			 
+			
+		}
+		
+	}
+	private static long sumarray(ArrayList<Integer> arr) {
+		long sum=0;
+		for(int i=0;i<arr.size();i++) {
+			sum+=arr.get(i);
+		}
+		return sum;
+	}
+	
+}

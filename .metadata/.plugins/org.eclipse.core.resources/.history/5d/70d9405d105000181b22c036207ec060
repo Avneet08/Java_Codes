@@ -1,0 +1,45 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class rw {
+
+	public static void main(String args[]) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			long T = sc.nextLong();
+			for (long j = 0; j < T; j++) {
+				int limit = sc.nextInt();
+				long arr[] = new long[(int) limit];
+				
+				for (int i = 1; i < limit; i++) {
+					arr[i] = sc.nextInt();
+				}
+				long C[]=generateseq(arr,arr.length);
+				//System.out.println(Arrays.toString(C));
+				long Xor=0;
+				for(int i=0;i<C.length;i++) {
+					Xor=xoring(Xor,C[i]);
+				}
+				System.out.println(Xor);
+			}
+		} catch (Exception e) {
+			return;
+		}
+}
+	public static long xoring(long xor,long c){
+		return (xor^c);
+		}
+	public static long[] generateseq(long[] arr,int n) {
+		long[] B=new long[n*n];
+		
+		for(int i=0;i<n;i++) {
+			for(int j=0;j<n;j++) {
+				B[n*i+j]=arr[i]+arr[j];
+				//System.out.println("b["+(n*i+j+1)+"] is "+B[n*i+j]);
+			}
+		}
+		return B;
+		
+		
+	}
+}
