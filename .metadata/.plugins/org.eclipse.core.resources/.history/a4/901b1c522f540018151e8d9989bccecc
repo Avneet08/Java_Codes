@@ -1,0 +1,64 @@
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class changeSigns {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		 Scanner sc = new Scanner(System.in);
+		 Long T=sc.nextLong();
+		 for(int u=0;u<T;u++) {
+			 int N=sc.nextInt();
+			 BigInteger arr[]=new BigInteger[N];
+			 for(int i=0;i<N;i++) {
+				 arr[i]=sc.nextBigInteger();
+			 }
+			 for(int i=0;i<N;i++) {
+				 changeSigns2(arr,N,i);
+			 }
+			 for(int i=0;i<N;i++) {
+				System.out.print(arr[i] +" ");
+			 }
+			 System.out.println(" ");
+			 
+			 
+			 
+		 }
+	}
+	private static BigInteger sum(BigInteger[] arr,int i,int n) {
+		BigInteger sum=BigInteger.valueOf(0);
+		for(int u=i;u<n;u++) {
+			sum=sum.add(arr[u]);
+		}
+		return sum;
+		
+	}
+
+	private static BigInteger[] changeSigns2(BigInteger[] arr, int n,int index) {
+		if (index==0  ) {
+			if(arr[index+1].compareTo(arr[index])==1 ) {
+				arr[index]=arr[index].multiply(BigInteger.valueOf(-1));
+			}
+			
+		}
+		else if(index==n-1  ) {
+			
+			if( arr[index-1].compareTo(arr[index])==1) {
+				arr[index]=arr[index].multiply(BigInteger.valueOf(-1));
+			}
+		}
+		else {
+			System.out.println(arr[index]);
+			BigInteger sumPre=sum(arr,0,index);
+			BigInteger sumSuc=sum(arr,index+1,n);
+			System.out.println("cdub"+sumPre+" "+sumSuc);
+			if(sumPre.compareTo(arr[index])==1 && sumSuc.compareTo(arr[index])==1 ){
+				if(arr[index+1].compareTo(arr[index])==1 && arr[index-1].compareTo(arr[index])==1 ) {
+					arr[index]=arr[index].multiply(BigInteger.valueOf(-1));
+				}
+			}
+		}
+		return arr;
+	}
+
+}
