@@ -1,0 +1,97 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class FAKEBS {
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		for(int z =0;z<t;z++){
+			int n = sc.nextInt();
+			int q = sc.nextInt();
+			int a[] = new int[n];
+			int b[] = new int[n];
+			for(int i =0;i<n;i++){
+				a[i] = sc.nextInt(); //original array
+				b[i] = a[i]; //duplicate sorted array
+			}
+			
+			
+			Arrays.sort(b);
+			for(int y =0;y<q;y++){
+				int x = sc.nextInt();
+				int indexa = -1;
+				for(int i =0;i<n;i++){
+					if(a[i] == x){
+						indexa = i;
+						break;
+					}
+				}
+				int indexb = Bsearch(b,x);
+				int numlefta = indexb;
+				int numrighta = a.length - indexb;
+				
+				int countleft = 0;
+				int countright =0;
+				int low = 0;
+			    int high = a.length-1;
+			    int mid =0;
+			    while(low <= high){
+			    	mid = (low + high) / 2;
+//			    	System.out.println(mid);
+					        if(a[mid] == x){
+					            break;
+					        }
+					        else if(a[mid] < x && indexa > mid){
+					            low = mid+1;
+//					        	System.out.println(a[mid]);
+					        }
+					        else if(a[mid] < x && indexa < mid){
+					        	high = mid-1;
+					        	countright++;
+//					        	System.out.println("R " + a[mid]);
+					        }
+					        else if(a[mid] > x && indexa > mid){
+					        	low = mid+1;
+					            countleft++;
+//					            System.out.println("L " + a[mid]);
+					        }
+					        else if(a[mid] > x && indexa < mid){
+					            high = mid-1;
+//					        	System.out.println(a[mid]);
+					        }
+			    }
+			    int totalsum = countleft + countright;
+			    if(countleft>numlefta || countright>numrighta){
+			    	System.out.println("-1");
+			    }
+			    else{
+			    	System.out.println("total sum is " + totalsum);
+//			    	System.out.println(countleft + " " + numlefta);
+//			    	System.out.println(countright + " " + numrighta);
+			    }
+				
+			}
+		}
+	}
+
+	private static int Bsearch(int[] a, int x) {
+		// TODO Auto-generated method stub
+		    int low = 0;
+		    int high = a.length;
+		    int mid =0;
+		    while(low <= high){
+		    	mid = (low + high) / 2;
+				        if(a[mid] == x){
+				            break;
+				        }
+				        else if(a[mid] < x){
+				            low = mid+1;
+				        }
+				        else{
+				            high = mid-1;
+				        }
+		    }
+		    return mid;
+	}
+}
