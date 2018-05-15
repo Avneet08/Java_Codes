@@ -78,7 +78,6 @@ static int lastnegative=0;
 								lastnegative=i;
 							}
 							else {
-								arr[lastnegative]=arr[lastnegative].multiply(BigInteger.valueOf(-1));
 								arr[j]=arr[j].multiply(BigInteger.valueOf(-1));
 								lastnegative=j;
 							}

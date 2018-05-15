@@ -73,12 +73,12 @@ static int lastnegative=0;
 							
 						}else {
 							if(arr[i].compareTo(arr[j])==1) {
-								arr[lastnegative]=arr[lastnegative].multiply(BigInteger.valueOf(-1));
+								
 								arr[i]=arr[i].multiply(BigInteger.valueOf(-1));
 								lastnegative=i;
 							}
 							else {
-								arr[lastnegative]=arr[lastnegative].multiply(BigInteger.valueOf(-1));
+								//arr[lastnegative]=arr[lastnegative].multiply(BigInteger.valueOf(-1));
 								arr[j]=arr[j].multiply(BigInteger.valueOf(-1));
 								lastnegative=j;
 							}
