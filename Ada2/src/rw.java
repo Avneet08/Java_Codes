@@ -8,8 +8,8 @@ public class rw {
 	public static void main(String args[]) {
 		try {
 			Scanner sc = new Scanner(System.in);
-			int T = sc.nextInt();
-			for (int j = 0; j < T; j++) {
+			//int T = sc.nextInt();
+			//for (int j = 0; j < T; j++) {
 				int limit = sc.nextInt();
 				Long arr[] = new Long[limit];
 				for (int i = 0; i < limit; i++) {
@@ -21,7 +21,7 @@ public class rw {
 				
 				
 				
-			}
+			//}
 		} catch (Exception e) {
 			return;
 		}

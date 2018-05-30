@@ -1,0 +1,43 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class XorPAirs {
+	static int countXorPair(Long arr[], int n,int t)
+    {
+        // To store count of odd and even numbers
+        int odd = 0, even = 0;
+ 
+        for (int i = 0; i < n; i++) {
+            
+            if (arr[i] >=t )
+                even++;
+            else
+                odd++;
+        }
+ 
+        // Return number of pairs
+        return even ;
+    }
+ 
+	public static void main(String args[]) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			
+				int limit = sc.nextInt();
+				int T = sc.nextInt();
+				Long arr[] = new Long[limit];
+				for (int i = 0; i < limit; i++) {
+					arr[i] = sc.nextLong();
+				}
+				int c=countXorPair(arr,arr.length,T);
+				System.out.println(c);
+			
+		} catch (Exception e) {
+			return;
+		}
+}
+	
+
+	
+}

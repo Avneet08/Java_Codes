@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class XorPAirs {
+	
+	public static void main(String args[]) {
+		try {
+			Scanner sc = new Scanner(System.in);
+			
+				int limit = sc.nextInt();
+				int T = sc.nextInt();
+				Long arr[] = new Long[limit];
+				for (int i = 0; i < limit; i++) {
+					arr[i] = sc.nextLong();
+				}
+				int c=countXorPair(arr,arr.length,T);
+				System.out.println(c);
+			
+		} catch (Exception e) {
+			return;
+		}
+}
+	public static long xoring(long xor,long c){
+		return (xor^c);
+		}
+	private static int countXorPair(Long[] arr, int length, int t) {
+		int count=0;
+		for(int j=0;j<length;j++) {
+		
+		for(int i=j;i<=length;i++) {
+			//System.out.println(count);
+			if(xoring(arr[j],arr[i])>=t) {
+				count++;
+			}
+			
+		}
+		}
+	System.out.println(count);
+		return count;
+	}
+	
+
+	
+}
