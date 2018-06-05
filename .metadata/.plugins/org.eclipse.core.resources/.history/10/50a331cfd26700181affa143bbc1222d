@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class NAIVE_CHEF {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			Scanner sc = new Scanner(System.in);
+			int T=sc.nextInt();
+			for(int i=0;i<T;i++) {
+				ArrayList<Integer> values=new ArrayList<Integer>();
+				int n=sc.nextInt();
+				int a=sc.nextInt();
+				int b=sc.nextInt();
+				for(int j=0;j<n;j++) {
+					values.add(sc.nextInt());
+				}
+				Set<Integer> store = new HashSet<>(); 
+				for (int value : values) { 
+					if (store.add(value) == false) 
+					{ System.out.println("found a duplicate element in array : " + value); } }
+
+				
+				
+			}
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+
+}

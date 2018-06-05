@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class NAIVE_CHEF {
+
+
+	public static void main(String[] args)throws IOException{
+		Reader.init(System.in);
+		long t = Reader.nextLong();
+		while(t -->0){
+			int N = Reader.nextInt();
+			int A = Reader.nextInt();
+			int B = Reader.nextInt();
+			int[] arr = new int[N];
+			for(int i=0; i<arr.length; i++){
+				arr[i] = Reader.nextInt();
+			}
+			int c1 = 0;
+			int c2 = 0;
+			for(int i=0; i<arr.length; i++){
+				if(arr[i] == A){
+					c1++;
+				}if(arr[i] == B){
+					c2++;
+				}
+			}
+			double x = c1*c2;
+			double y = N*N;
+			double z = x/y;
+			System.out.printf("%10f", z);
+			System.out.println(" ");
+		}
+	}
+
+}

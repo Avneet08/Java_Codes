@@ -1,0 +1,28 @@
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class SHKSTR {
+
+
+		// TODO Auto-generated method stub
+		public static void main(String[] args)throws IOException{
+
+			Scanner sc = new Scanner(System.in);
+	
+		int n = sc.nextInt();
+		String arr[]=new String[n];
+		for(int j=0;j<n;j++){
+			arr[j]=sc.next();
+	}
+		Arrays.sort(arr);
+		System.out.println(Arrays.toString(arr));
+		/*int q=sc.nextInt();
+		for(int j=0;j<q;j++) {
+			int q2=sc.nextInt();
+			String x=sc.next();
+			
+		}*/
+	}
+
+}
