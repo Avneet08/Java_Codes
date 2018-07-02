@@ -2,18 +2,36 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="min" key="selection"/>
+		<item value="arr2" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="lds"/>
+			<item value="lis"/>
+			<item value="times"/>
+			<item value="findex"/>
+			<item value="total"/>
+			<item value="oprice"/>
+			<item value="fnum"/>
+			<item value="tnum"/>
+			<item value="n"/>
 			<item value="min"/>
 			<item value="initial"/>
 			<item value="high"/>
 			<item value="l"/>
 		</list>
 		<list key="replacehistory">
+			<item value="arr2"/>
+			<item value="arr1"/>
+			<item value="rough"/>
+			<item value="r"/>
+			<item value="sum"/>
+			<item value="arr"/>
+			<item value="k"/>
+			<item value="n"/>
+			<item value="t"/>
 			<item value="minvalues"/>
 			<item value="sum1"/>
 		</list>

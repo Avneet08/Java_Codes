@@ -1,0 +1,34 @@
+import java.util.Scanner;
+
+public class J1_p1 {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		for (int i = 0; i < n; i++) {
+			int t = sc.nextInt();
+			if (t % 3 == 0 || t % 7 == 0) {
+				System.out.println("YES");
+
+			}
+			else {
+				 if (t % 10 == 0) {
+						System.out.println("YES");
+					} else {
+				int x = t % 10;
+				if (x % 3 == 0 || x % 7 == 0) {
+					System.out.println("YES");
+
+				}else {
+				System.out.println("NO");
+				}
+					}
+
+			}
+
+	}
+	}
+
+}
