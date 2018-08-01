@@ -1,0 +1,51 @@
+package src2;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class J_1 {
+	
+	public static long gcm(long a, long b) {
+	    return b == 0 ? a : gcm(b, a % b); // Not bad for one line of code :)
+	}
+
+	public static long asFraction(long a, long b) {
+	    long gcm = gcm(a, b);
+	    return gcm;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		try {
+			Scanner sc = new Scanner(System.in);
+			int T=sc.nextInt();
+			for(int i=0;i<T;i++) {
+				int n=sc.nextInt();
+				long q=0;
+				BigInteger z=new BigInteger("0");
+				BigInteger o=new BigInteger("10");
+				if(n%2==0) {
+				q=(long) Math.pow(10, n/2);
+				z=o.pow(n/2);
+				}
+				else {
+					q=(long) Math.pow(10, (n-1)/2);
+					z=o.pow((n-1)/2);
+				}
+				long x=(long) Math.pow(10,n);
+				BigInteger u;
+				u=o.pow(n);
+				
+				System.out.println(q+" "+x);
+				System.out.println(z+" "+u);
+				long gcm=asFraction(q,x);
+			System.out.println(q/gcm+" "+x/gcm);
+				
+			}
+		}
+		catch(Exception e) {
+			System.out.println("\n");
+			System.out.println(e);
+		}
+	}
+
+}

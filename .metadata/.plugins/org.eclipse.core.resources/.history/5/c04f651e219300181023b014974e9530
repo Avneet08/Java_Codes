@@ -1,0 +1,45 @@
+package src2;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class sahil_1 {
+	public static BigInteger calculate(BigInteger y) {
+	   	
+	   	 BigInteger one=new BigInteger("1");
+	   	 y=y.subtract(one);
+	   	  String bin =y .toString(2);
+	   	  String ternary = new StringBuilder(bin).reverse().toString();
+	   	 
+	   	  int i=0;
+	   	 BigInteger a = new BigInteger("0");
+	   	  while(i<ternary.length()) {
+	   	  if(ternary.charAt(i) == '0') {
+	   		  
+	   	  }
+	   	  else if(ternary.charAt(i) == '1') {
+	   	    	a = a.add(BigInteger.valueOf(3).pow(i));
+	   	    }
+	   	    i++;
+	   	  }
+	   	  return a;
+	   	}
+
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			
+			
+			try {
+				Scanner r = new Scanner(System.in);
+			
+				BigInteger n=new BigInteger("0");
+				n=r.nextBigInteger();
+			BigInteger x =calculate(n);
+			System.out.println(x);
+			
+			}catch(Exception e) {
+				System.out.println(e);
+			}
+		}
+
+}

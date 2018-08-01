@@ -1,0 +1,76 @@
+package src2;
+
+import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class july_2 {
+	public static int count(String s, char c)
+    {
+        int res = 0;
+ 
+        for (int i=0; i<s.length(); i++)
+        {
+            if (s.charAt(i) == c)
+            res++;
+        } 
+        return res;
+    }
+	static int countSetBits(BigInteger n)
+    { BigInteger a = new BigInteger("0");
+    BigInteger one=new BigInteger("1");
+        int count = 0;
+        while (n .compareTo(a) ==1)
+        {
+        	BigInteger x=n.and(n.subtract(one));
+        	n=n.add(x);
+            //n &= (n.subtract(one)) ;
+            count++;
+        }
+        return count;
+    }
+    
+	static int flag = 0;
+	
+    private static BigInteger calc(BigInteger n, int k) {
+    	 BigInteger a = new BigInteger("0");
+    	 BigInteger one=new BigInteger("1");
+    	 
+    	 String binary = n.subtract(one).toString(2);
+    	  String reverse = new StringBuilder(binary).reverse().toString();
+
+    	  if(count(reverse,'1') == k){
+    		  flag = 1;
+    	  }
+    	  else{
+    		  flag = 0;
+    	  }
+    	  
+    	  for (int i = 0; i < reverse.length(); i++) {
+    	    if(reverse.charAt(i) == '1') {
+    	    	a = a.add(BigInteger.valueOf(2).pow(i));
+    	    }
+    	  }
+    	  return a;
+    	}
+    
+    public static void main (String[] args) throws IOException
+    {
+    	Scanner sc = new Scanner(System.in);
+    	//int n = sc.nextInt();
+    	BigInteger n=new BigInteger("0");
+		n=sc.nextBigInteger();
+    	int k = sc.nextInt();
+    	BigInteger ans = new BigInteger("0");
+    	 BigInteger one=new BigInteger("1");
+    	BigInteger i = n.subtract(one);
+    	while(true){
+    		i=i.add(one);
+    		ans = calc(i,k);
+    		if(ans.compareTo(n) == 1 & flag == 1){
+    			break;
+    		}
+    	}
+        System.out.println(ans);
+    }
+}

@@ -1,0 +1,76 @@
+package src2;
+
+import java.io.IOException;
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class sahil_2 {
+
+
+	public static int count(String s, char c)
+    {
+        int res = 0;
+ 
+        for (int i=0; i<s.length(); i++)
+        {
+            // checking character in string
+            if (s.charAt(i) == c)
+            res++;
+        } 
+        return res;
+    }
+    
+	static int flag = 0;
+	private static BigInteger calc(BigInteger n) {
+	   	 BigInteger a = new BigInteger("0");
+	   	 BigInteger one=new BigInteger("1");
+	   	  String binary = n.subtract(one).toString(2);
+	   	  String reverse = new StringBuilder(binary).reverse().toString();
+	   	  //System.out.println(binary+" "+reverse);
+	   	  int i=0;
+	   	  while(i<reverse.length()) {
+	   	  
+	   	    if(reverse.charAt(i) == '1') {
+	   	    	a = a.add(BigInteger.valueOf(3).pow(i));
+	   	    }
+	   	    i++;
+	   	  }
+	   	  return a;
+	   	}
+    private static BigInteger calc(int n, int k) {
+    	 BigInteger arrli = new BigInteger("0");
+    	  String binary = Integer.toString(n - 1, 2);
+    	  String reverse = new StringBuilder(binary).reverse().toString();
+//    	  System.out.println("count is - " + count(reverse,'1'));
+    	  if(count(reverse,'1') == k){
+    		  flag = 1;
+    	  }
+    	  else{
+    		  flag = 0;
+    	  }
+    	  
+    	  for (int i = 0; i < reverse.length(); i++) {
+    	    if(reverse.charAt(i) == '1') {
+    	    	arrli = arrli.add(BigInteger.valueOf(2).pow(i));
+    	    }
+    	  }
+    	  return arrli;
+    	}
+    
+    public static void main (String[] args) throws IOException
+    {
+    	Scanner sc = new Scanner(System.in);
+    	int n = sc.nextInt();
+    	int k = sc.nextInt();
+    	BigInteger ans = new BigInteger("0");
+    	int i = n-1;
+    	while(true){
+    		i++;
+    		ans = calc(i,k);
+    		if(ans.compareTo(BigInteger.valueOf(n)) == 1 & flag == 1){
+    			break;
+    		}
+    	}
+        System.out.println(ans);
+    }
+}

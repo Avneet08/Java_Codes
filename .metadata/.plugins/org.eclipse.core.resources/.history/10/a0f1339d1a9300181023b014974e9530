@@ -1,0 +1,21 @@
+package src2;
+
+import java.math.BigInteger;
+import java.util.Scanner;
+
+public class july_1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		try {
+			Scanner sc = new Scanner(System.in);
+		BigInteger x=new BigInteger("0");
+		x=sc.nextBigInteger();
+		System.out.println(x);
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+	}
+
+}
