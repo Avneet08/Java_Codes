@@ -32,40 +32,28 @@ public class Question3 {
 	       throw new RuntimeException(ex);
 	    }
 	}
-	public static StringBuffer F(String b)  throws IOException{
+	public static StringBuffer F(String b) {
 		String c=b.replaceAll("[^0-9]+", "");
-		System.out.println(c+" "+c.length());
+		//System.out.println(c+" "+c.length());
 		int no=c.length()%10;
 		StringBuffer buffer=new StringBuffer();
-
+		
 		for(int i = no+5;i<no+9;i++) {
 			buffer.append(c.charAt(i));
 			}
-
-		 String fileName = "hash.txt";
-
-	        try {
-	            FileWriter fileWriter =
-	                new FileWriter(fileName);
-
-	            BufferedWriter bufferedWriter =
-	                new BufferedWriter(fileWriter);
-
-	            bufferedWriter.write("Hello there,");
-	          
-	            bufferedWriter.close();
-	        }
-	        catch(IOException ex) {
-	            System.out.println(
-	                "Error writing to file '"
-	                + fileName + "'");
-	           
-	        }
 return buffer;
 		
 	}
-	public static void Verify(String Hash,String otp_u) {
-		
+	public static void Verify(String Hash,String otp_u)  {
+		StringBuffer otp=F(Hash);
+		//System.out.println(otp+" ghvvg");
+		if(otp.toString().equals(otp_u)) {
+			System.out.println("Succesfull");
+		}
+		else
+		{
+			System.out.println("not succesfull");
+		}
 	}
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
@@ -75,32 +63,28 @@ try {
 	Scanner sc = new Scanner(System.in);
 	LocalDateTime a =LocalDateTime.now();
 
-	String b=sha256(a.toString());
-	System.out.println(b);
-	StringBuffer otp=F(b);
-	System.out.println(otp);
+	//String b=sha256(a.toString());
+	//System.out.println("hash value is "+b);
+	try (FileWriter outFile = new FileWriter("hash.txt");
+			BufferedWriter bWriter = new BufferedWriter(outFile)) {
+		bWriter.write(sha256(a.toString()));
+	} catch (IOException e) {
+		e.printStackTrace();
+	}
+	FileReader freader = new FileReader("hash.txt");
+	BufferedReader br = new BufferedReader(freader);
+	String s;
+	s = br.readLine();
+	freader.close();
+
+	StringBuffer otp=F(s);
+	System.out.println("hash value is "+s);
+	System.out.println("otp for user is "+otp);
+	System.out.println("Kindly enter the otp");
 	String otp_u=sc.next();
-	 
+	
 
-     // This will reference one line at a time
-  
-
-    
-         // FileReader reads text files in the default encoding.
-         FileReader fileReader = 
-             new FileReader(fileName);
-
-         // Always wrap FileReader in BufferedReader.
-         BufferedReader bufferedReader = 
-             new BufferedReader(fileReader);
-String hash=null;
-         while((line = bufferedReader.readLine()) != null) {
-              hash=line;
-         }   
-System.out.println("hash is "+hash);
-         // Always close files.
-         bufferedReader.close();    
-         Verify(hash,otp_u);
+         Verify(s,otp_u);
      
      
 	
